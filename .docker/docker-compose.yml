@@ -7,19 +7,22 @@ services:
     restart: unless-stopped
     depends_on:
       - php
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost:80}
     ports:
-      - 8080:80
+      - "${CADDY_PORT:-8080}:80"
+      #- "${CADDY_HTTPS_PORT:-8443}:443"
     volumes:
-      - './.docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro'
-      - ./public:/srv/app/public
+      - './caddy/Caddyfile:/etc/caddy/Caddyfile:ro'
+      - ./../public:/srv/app/public
 
   php:
     build:
-      context: ./.docker/php
+      context: ./php
     restart: unless-stopped
     container_name: php_webapp
     volumes:
-      - ./:/srv/app
+      - ./..:/srv/app
 
 networks:
   default:

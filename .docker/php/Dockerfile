@@ -10,8 +10,6 @@ RUN apt-get install \
     git \
     -y;
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
 RUN docker-php-ext-install \
     pdo_mysql \
     zip \
