@@ -6,7 +6,7 @@ create-laravel:
 	$(COMPOSER) create-project laravel/laravel . --stability=stable --prefer-dist --no-dev --no-progress --no-interaction
 	rm -rf application_tmp/.git
 	mv application_tmp/* ./
-	rm -r application_tmp/
+	rm -r application_tmp
 
 update: composer.json
 	$(COMPOSER) composer update
