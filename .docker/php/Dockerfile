@@ -8,6 +8,7 @@ RUN apt-get install \
     libzip-dev \
     gettext \
     git \
+    vim \
     -y;
 
 RUN docker-php-ext-install \
@@ -15,4 +16,8 @@ RUN docker-php-ext-install \
     zip \
     intl;
 
+USER www-data
+
 WORKDIR /srv/app
+
+COPY --chown=www-data:www-data . .
