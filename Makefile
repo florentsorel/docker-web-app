@@ -13,6 +13,15 @@ create-laravel:
 	mv application_tmp/.[!.]* ./
 	rm -rf application_tmp
 
+create-symfony-api:
+	mkdir -p application_tmp
+	cd application_tmp && $(COMPOSER) create-project symfony/skeleton . --stability=stable --prefer-dist --no-progress --no-interaction
+	cd ..
+	rm -rf application_tmp/.git
+	mv application_tmp/* ./
+	mv application_tmp/.[!.]* ./
+	rm -rf application_tmp
+
 create-symfony-webapp:
 	mkdir -p application_tmp
 	cd application_tmp && $(COMPOSER) create-project symfony/skeleton . --stability=stable --prefer-dist --no-progress --no-interaction
@@ -37,10 +46,12 @@ phpunit:
 
 # Docker
 up:
-	cd .docker && docker-compose up -d && cd ..
+	cd .docker && docker compose up -d && cd ..
 
 down:
-	cd .docker && docker-compose down && cd ..
+	cd .docker && docker compose down && cd ..
 
+logs:
+	cd .docker && docker compose logs && cd ..
 %:
 	@:
