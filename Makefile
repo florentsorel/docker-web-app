@@ -1,5 +1,5 @@
 COMPOSER = docker run --rm -it -v $$PWD:/srv/app -w /srv/app -u $$(id -u):$$(id -g) composer:latest
-PHP = docker run --rm -it -v $$PWD:/srv/app -w /srv/app -u $$(id -u):$$(id -g) php:8.1-alpine
+PHP = docker run --rm -it -v $$PWD:/srv/app -w /srv/app -u $$(id -u):$$(id -g) php:8.2-alpine
 
 .SILENT:
 .IGNORE:
